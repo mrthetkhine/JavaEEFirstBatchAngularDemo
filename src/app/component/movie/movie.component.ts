@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieComponent implements OnInit {
 
+  name:string = 'Avatar';
+  year: number = 2020;
   constructor() { }
 
   ngOnInit() {
