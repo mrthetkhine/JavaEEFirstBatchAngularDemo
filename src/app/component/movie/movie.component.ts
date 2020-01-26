@@ -7,12 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieComponent implements OnInit {
 
-  name:string = 'Avatar';
+  name: string = 'Avatar';
   year: number = 2020;
   actors: Array<string> =['Actor One','Actor Two'];
+  liked : boolean = true;
   constructor() { }
 
   ngOnInit() {
+  }
+  onLikeClick()
+  {
+    this.liked = !this.liked;
   }
 
 }
