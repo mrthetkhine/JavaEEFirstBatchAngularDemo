@@ -11,12 +11,12 @@
       {{actor}}
     </li>
   </ul>
-  <b *ngIf="liked">Liked</b>
-  <b *ngIf="!liked">UnLiked</b>
+  <b *ngIf="movie.liked">Liked</b>
+  <b *ngIf="!movie.liked">UnLiked</b>
   <button (click)="onLikeClick()">
 
-    <b *ngIf="!liked">Like Me</b>
-    <b *ngIf="liked">UnLike Me</b>
+    <b *ngIf="!movie.liked">Like Me</b>
+    <b *ngIf="movie.liked">UnLike Me</b>
   </button>
 </div>
 

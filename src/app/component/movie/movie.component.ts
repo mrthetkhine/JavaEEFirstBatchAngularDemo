@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import {Component, OnInit, Input, EventEmitter,Output} from '@angular/core';
 import {Movie} from "../../model/movie.model";
 
 @Component({
@@ -9,9 +9,10 @@ import {Movie} from "../../model/movie.model";
 export class MovieComponent implements OnInit {
 
   @Input() movie : Movie;
+  @Output() likeChanged = new EventEmitter<Movie>();
 
   actors: Array<string> =['Actor One','Actor Two'];
-  liked : boolean = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -19,7 +20,8 @@ export class MovieComponent implements OnInit {
   }
   onLikeClick()
   {
-    this.liked = !this.liked;
+    this.movie.liked = !this.movie.liked;
+    this.likeChanged.emit(this.movie);
   }
 
 }

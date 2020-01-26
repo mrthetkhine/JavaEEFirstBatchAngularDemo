@@ -9,4 +9,9 @@ import {Movie} from "./model/movie.model";
 export class AppComponent {
   title = 'demo';
   movie: Movie = new Movie('Avatar',2020);
+
+  movieLikeChanged(movie:Movie)
+  {
+    console.log('Movie like changed ',movie);
+  }
 }
