@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+import {Movie} from "../../model/movie.model";
 
 @Component({
   selector: 'app-movie',
@@ -7,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieComponent implements OnInit {
 
-  name: string = 'Avatar';
-  year: number = 2020;
+  @Input() movie : Movie;
+
   actors: Array<string> =['Actor One','Actor Two'];
   liked : boolean = true;
   constructor() { }
 
   ngOnInit() {
+    console.log('Movie input ',this.movie);
   }
   onLikeClick()
   {

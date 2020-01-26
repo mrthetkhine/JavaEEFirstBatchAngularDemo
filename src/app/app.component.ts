@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Movie} from "./model/movie.model";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'demo';
+  movie: Movie = new Movie('Avatar',2020);
 }
