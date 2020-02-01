@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, EventEmitter,Output} from '@angular/core';
 import {Movie} from "../../model/movie.model";
+import {LoggerService} from "../../services/logger.service";
 
 @Component({
   selector: 'app-movie',
@@ -13,15 +14,29 @@ export class MovieComponent implements OnInit {
 
   actors: Array<string> =['Actor One','Actor Two'];
 
-  constructor() { }
-
+  constructor(private loggerService: LoggerService) {
+    console.log('Movie constructor run');
+  }
+  ngOnChanges()
+  {
+    console.log("ngOnChanges run");
+  }
   ngOnInit() {
-    console.log('Movie input ',this.movie);
+    console.log('Movie ngOnit ',this.movie);
+  }
+  ngDoCheck()
+  {
+    console.log('Run ngDoCheck ');
+  }
+  ngAfterContentInit()
+  {
+    console.log('Run ngAfterContentInit ');
   }
   onLikeClick()
   {
     this.movie.liked = !this.movie.liked;
     this.likeChanged.emit(this.movie);
+    this.loggerService.log('Movie like Clicked');
   }
 
 }
