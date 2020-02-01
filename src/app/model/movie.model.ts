@@ -1,11 +1,11 @@
 export class Movie {
-  title : string;
+  name : string;
   year : number;
   liked? : boolean;
 
   constructor(title : string, year : number)
   {
-    this.title = title;
+    this.name = title;
     this.year = year;
   }
 

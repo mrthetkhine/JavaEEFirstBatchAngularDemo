@@ -13,11 +13,11 @@ export class AppComponent {
 
   constructor(private movieService : MovieService)
   {
-    this.movies = this.movieService.getAllMovie();
+
   }
   ngOnInit()
   {
-
+    this.movies = this.movieService.getAllMovie();
   }
   movieLikeChanged(movie:Movie)
   {
