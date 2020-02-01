@@ -1,7 +1,5 @@
-<div>
-  <h3>
-    Movie Component!
-  </h3>
+<div class="movie">
+
   <br/>
   Name {{movie.title}}<br/>
   Year {{movie.year}}
@@ -13,7 +11,7 @@
   </ul>
   <b *ngIf="movie.liked">Liked</b>
   <b *ngIf="!movie.liked">UnLiked</b>
-  <button (click)="onLikeClick()">
+  <button class='btn btn-primary btn-sm' (click)="onLikeClick()">
 
     <b *ngIf="!movie.liked">Like Me</b>
     <b *ngIf="movie.liked">UnLike Me</b>

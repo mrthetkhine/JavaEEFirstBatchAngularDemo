@@ -8,7 +8,7 @@ import {Movie} from "./model/movie.model";
 })
 export class AppComponent {
   title = 'demo';
-  movie: Movie = new Movie('Avatar',2020);
+  movies: Array<Movie> = [new Movie('Avatar',2020),new Movie('Transformer',2020)];
 
   movieLikeChanged(movie:Movie)
   {

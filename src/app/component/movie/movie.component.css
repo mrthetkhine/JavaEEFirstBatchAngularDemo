@@ -1,0 +1,9 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+.movie
+{
+  border:1px solid lightgray;
+  padding: 10px;
+  margin:10px;
+  width: 200px;
+  display: block;
+}
