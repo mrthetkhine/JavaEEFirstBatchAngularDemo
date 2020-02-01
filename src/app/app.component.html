@@ -329,7 +329,7 @@
 <div class="content" role="main">
 
   Hello from Angular
-  <app-movie *ngFor="let movie of movies" [movie]="movie"
+  <app-movie *ngFor="let movie of moviesData| async" [movie]="movie"
              (likeChanged)="movieLikeChanged(movie)">
 
   </app-movie>
