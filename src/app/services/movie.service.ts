@@ -24,11 +24,12 @@ export class MovieService {
 
   loadAllMovie(): Observable<any>
   {
-    return this.httpClient.get<Movie[]>(URL_HOST+"/movies").subscribe(data=>{
+    return this.httpClient.get<Movie[]>(URL_HOST+"/movies")
+                .subscribe(data=>{
 
-      this.movies = data;
-      this.movies$.next(data);
-      console.log('Get data ',data);
-    });
+                this.movies = data;
+                this.movies$.next(data);
+                console.log('Get data ',data);
+              });
   }
 }
