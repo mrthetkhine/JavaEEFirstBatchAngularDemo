@@ -14,6 +14,7 @@ export class MovieService {
   private movies$ = new BehaviorSubject<Movie[]>([]);
 
   movies : Movie[] = [];
+
   constructor(private httpClient : HttpClient) {
     console.log('Movie service constructor');
   }
