@@ -10,7 +10,7 @@ import {MovieService} from "../../services/movie.service";
 })
 export class MovieTablePageComponent implements OnInit {
 
-  moviesData : Observable<Movie>;
+  moviesData ;
   movieCount = 0;
 
   movieSubscriber$;

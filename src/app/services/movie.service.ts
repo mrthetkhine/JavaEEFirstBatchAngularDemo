@@ -9,9 +9,9 @@ import {URL_HOST} from './../utils/Setting';
   providedIn: 'root'
 })
 export class MovieService {
-  movies: Array<Movie> = [new Movie('Avatar',2020),new Movie('Transformer',2020)];
+  //movies: Array<Movie> = [new Movie('Avatar',2020),new Movie('Transformer',2020)];
 
-  private movies$ = new BehaviorSubject<Movie[]>([]);
+  movies$ = new BehaviorSubject<Movie[]>([]);
 
   movies : Movie[] = [];
 
@@ -23,9 +23,9 @@ export class MovieService {
     console.log('Ng OnInit Movie Service');
   }
 
-  loadAllMovie(): Observable<any>
+  loadAllMovie()
   {
-    return this.httpClient.get<Movie[]>(URL_HOST+"/movies")
+    this.httpClient.get<Movie[]>(URL_HOST+"/movies")
                 .subscribe(data=>{
 
                 this.movies = data;
