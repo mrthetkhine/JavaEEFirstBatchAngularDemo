@@ -12,7 +12,7 @@ export class MovieListPageComponent implements OnInit {
   constructor(private movieService : MovieService) { }
 
   ngOnInit() {
-    this.moviesData = this.movieService.getAllMovie();
+    this.moviesData = this.movieService.movies$;
   }
 
 }

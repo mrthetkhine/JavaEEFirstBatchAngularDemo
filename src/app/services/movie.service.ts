@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from "rxjs/index";
+import {Observable, BehaviorSubject} from "rxjs/index";
 
 import {Movie} from "./../model/movie.model";
 import {URL_HOST} from './../utils/Setting';
@@ -11,10 +11,24 @@ import {URL_HOST} from './../utils/Setting';
 export class MovieService {
   movies: Array<Movie> = [new Movie('Avatar',2020),new Movie('Transformer',2020)];
 
-  constructor(private httpClient : HttpClient) { }
+  private movies$ = new BehaviorSubject<Movie[]>([]);
 
-  getAllMovie(): Observable<any>
+  movies : Movie[] = [];
+  constructor(private httpClient : HttpClient) {
+    console.log('Movie service constructor');
+  }
+  ngOnInit()
   {
-    return this.httpClient.get(URL_HOST+"/movies");
+    console.log('Ng OnInit Movie Service');
+  }
+
+  loadAllMovie(): Observable<any>
+  {
+    return this.httpClient.get<Movie[]>(URL_HOST+"/movies").subscribe(data=>{
+
+      this.movies = data;
+      this.movies$.next(data);
+      console.log('Get data ',data);
+    });
   }
 }

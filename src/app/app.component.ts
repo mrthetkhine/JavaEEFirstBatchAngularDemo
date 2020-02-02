@@ -12,7 +12,6 @@ export class AppComponent {
   title = 'demo';
   movies : Array<Movie>;
 
-  moviesData : Observable<Movie>;
   constructor(private movieService : MovieService)
   {
 
@@ -20,8 +19,7 @@ export class AppComponent {
   ngOnInit()
   {
     console.log('Loaded ');
-    this.moviesData = this.movieService.getAllMovie();
-    console.log(this.moviesData);
+    this.movieService.loadAllMovie();
   }
   movieLikeChanged(movie:Movie)
   {
