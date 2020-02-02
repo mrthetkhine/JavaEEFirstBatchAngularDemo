@@ -1,0 +1,20 @@
+Movie Count {{movieCount}}
+<table class="table table-striped">
+
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Year</th>
+  </tr>
+
+  </thead>
+  <tr *ngFor="let movie of moviesData| async"
+  >
+    <td>
+      {{ movie.name}}
+    </td>
+    <td>
+      {{ movie.year}}
+    </td>
+  </tr>
+</table>
