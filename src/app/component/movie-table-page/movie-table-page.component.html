@@ -17,6 +17,10 @@ Movie Count {{movieCount}}
     <td>
       {{ movie.year}}
     </td>
+
+    <td>
+      <button (click)="editMovie(movie)" class="btn btn-primary">Edit</button>
+    </td>
     <td>
       <button (click)="deleteMovie(movie)" class="btn btn-primary">Delete</button>
     </td>

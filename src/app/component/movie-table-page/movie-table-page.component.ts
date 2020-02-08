@@ -29,6 +29,10 @@ export class MovieTablePageComponent implements OnInit {
       this.movieCount = data.length;
     });
   }
+  editMovie(movie)
+  {
+    console.log('Edit movie ',movie);
+  }
   deleteMovie(movie)
   {
     console.log('Delete movie ',movie);
