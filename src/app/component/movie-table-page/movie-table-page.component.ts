@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import {Observable} from "rxjs/index";
 import {Movie} from "../../model/movie.model";
+import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import {MovieService} from "../../services/movie.service";
 
 @Component({
@@ -14,7 +15,13 @@ export class MovieTablePageComponent implements OnInit {
   movieCount = 0;
 
   movieSubscriber$;
-  constructor(private movieService : MovieService)
+
+  @ViewChild('mymodal') editModalDlg:any;
+
+  closeResult: string;
+  modalOptions:NgbModalOptions;
+  constructor(private modalService: NgbModal,
+              private movieService : MovieService)
   {
 
   }
@@ -29,9 +36,29 @@ export class MovieTablePageComponent implements OnInit {
       this.movieCount = data.length;
     });
   }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      console.log('Modal Close');
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    console.log('Dismissed reason ',reason);
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
   editMovie(movie)
   {
-    console.log('Edit movie ',movie);
+    console.log('Edit movie ',movie, ' modal ',this.editModalDlg);
+    this.open(this.editModalDlg);
   }
   deleteMovie(movie)
   {
