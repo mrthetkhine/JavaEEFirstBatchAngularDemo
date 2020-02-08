@@ -5,6 +5,7 @@ Movie Count {{movieCount}}
   <tr>
     <th>Name</th>
     <th>Year</th>
+    <th>Action</th>
   </tr>
 
   </thead>
@@ -16,5 +17,9 @@ Movie Count {{movieCount}}
     <td>
       {{ movie.year}}
     </td>
+    <td>
+      <button (click)="deleteMovie(movie)" class="btn btn-primary">Delete</button>
+    </td>
+
   </tr>
 </table>

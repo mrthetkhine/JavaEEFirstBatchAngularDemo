@@ -33,4 +33,12 @@ export class MovieService {
                 console.log('Get data ',data);
               });
   }
+  delete(movie:Movie) {
+    this.httpClient.delete(URL_HOST + "/movies/"+movie.id).subscribe(data=> {
+      console.log('Movie deleted ',data)
+
+      this.movies = this.movies.filter(mov=>mov.id != movie.id);
+      this.movies$.next(this.movies);
+    });
+  }
 }

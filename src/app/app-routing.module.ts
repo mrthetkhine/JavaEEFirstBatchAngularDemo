@@ -6,7 +6,7 @@ import {MovieTablePageComponent} from "./component/movie-table-page/movie-table-
 
 const routes: Routes = [
   { path: 'movie_list', component: MovieListPageComponent },
-  { path: 'movie_table', component: MovieTablePageComponent }
+  { path: 'movie_table', component: MovieTablePageComponent },
 ];
 
 @NgModule({

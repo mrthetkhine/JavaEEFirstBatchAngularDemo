@@ -29,6 +29,11 @@ export class MovieTablePageComponent implements OnInit {
       this.movieCount = data.length;
     });
   }
+  deleteMovie(movie)
+  {
+    console.log('Delete movie ',movie);
+    this.movieService.delete(movie);
+  }
   ngOnDestroy()
   {
     this.movieSubscriber$.unsubscribe();
