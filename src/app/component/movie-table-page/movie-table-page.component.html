@@ -7,7 +7,39 @@ Movie Count {{movieCount}}
     </button>
   </div>
   <div class="modal-body">
-    Boostrap Modal Dialog Body
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="row from-row">
+        <label class="col-sm-4 ">
+          Name
+
+        </label>
+        <input class="col-sm-4 form-control" type="text" formControlName="name">
+        <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)"
+             class="alert alert-danger">
+          <div *ngIf="f.name.errors">
+            EmployeeName is required.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row from-group-row">
+        <label class="col-sm-4" >
+          Year
+
+        </label>
+        <input class="col-sm-4 form-control"type="text" formControlName="year">
+        <div *ngIf="f.year.invalid && (f.year.dirty || f.year.touched)"
+             class="alert alert-danger">
+          <div *ngIf="f.year.errors">
+            Year is required.
+          </div>
+        </div>
+
+      </div>
+
+      <button type="submit" [disabled]="!editForm.valid" class="btn btn-primary">Update</button>
+    </form>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>

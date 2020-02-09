@@ -1,9 +1,12 @@
+///<reference path="../../../../node_modules/@angular/forms/forms.d.ts"/>
 import { Component, OnInit,ViewChild } from '@angular/core';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+
+import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+
+import {MovieService} from "../../services/movie.service";
 import {Observable} from "rxjs/index";
 import {Movie} from "../../model/movie.model";
-import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
-import {MovieService} from "../../services/movie.service";
-
 @Component({
   selector: 'app-movie-table-page',
   templateUrl: './movie-table-page.component.html',
@@ -16,11 +19,15 @@ export class MovieTablePageComponent implements OnInit {
 
   movieSubscriber$;
 
-  @ViewChild('mymodal',{static:true}) editModalDlg:any;
+  @ViewChild('mymodal',{'static':false}) editModalDlg:any;
 
   closeResult: string;
   modalOptions:NgbModalOptions;
-  constructor(private modalService: NgbModal,
+
+  editForm:FormGroup ;
+
+  constructor(private formBuilder: FormBuilder,
+              private modalService: NgbModal,
               private movieService : MovieService)
   {
 
@@ -34,6 +41,11 @@ export class MovieTablePageComponent implements OnInit {
     this.movieSubscriber$ = this.movieService.movies$.subscribe(data=>{
       console.log('New movie arrived');
       this.movieCount = data.length;
+    });
+
+    this.editForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      year: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
     });
   }
   open(content) {
@@ -54,6 +66,15 @@ export class MovieTablePageComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  onSubmit()
+  {
+    console.log('Submit form');
+  }
+  get f()
+  {
+    return this.editForm.controls;
   }
   editMovie(movie)
   {
