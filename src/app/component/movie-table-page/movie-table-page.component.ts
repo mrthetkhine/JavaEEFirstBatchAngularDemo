@@ -19,7 +19,7 @@ export class MovieTablePageComponent implements OnInit {
 
   movieSubscriber$;
 
-  @ViewChild('mymodal',{'static':false}) editModalDlg:any;
+  @ViewChild('mymodal',{'static':true}) editModalDlg:any;
 
   closeResult: string;
   modalOptions:NgbModalOptions;
@@ -78,11 +78,8 @@ export class MovieTablePageComponent implements OnInit {
   editMovie(movie)
   {
     console.log('Edit movie ',movie, ' modal ',this.editModalDlg);
-    this.editForm.patchValue({
-      id : movie.id,
-      name : movie.name,
-      year : movie.year,
-    });
+    let data = {... movie};
+    this.editForm.patchValue(data);
     this.open(this.editModalDlg);
   }
   onSubmit()

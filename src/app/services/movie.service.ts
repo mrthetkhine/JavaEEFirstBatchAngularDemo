@@ -46,8 +46,8 @@ export class MovieService {
     this.httpClient.put(URL_HOST + "/movies/"+movie.id,movie).subscribe(data=> {
       console.log('Movie Update ',data)
 
-      //this.movies = this.movies.filter(mov=>mov.id != movie.id);
-      //this.movies$.next(this.movies);
+      this.movies = this.movies.map(mov=>mov.id != movie.id?mov : movie);
+      this.movies$.next(this.movies);
 
     });
   }
