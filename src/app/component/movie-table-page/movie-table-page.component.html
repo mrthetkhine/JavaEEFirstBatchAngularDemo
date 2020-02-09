@@ -1,4 +1,4 @@
-Movie Count {{movieCount}}
+<button (click)="newMovie()" class="btn btn-primary">New</button>
 <ng-template #mymodal let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
@@ -7,7 +7,7 @@ Movie Count {{movieCount}}
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
       <div class="row from-row">
         <input class="col-sm-4 form-control" type="hidden" formControlName="id">
         <label class="col-sm-4 ">
@@ -39,7 +39,7 @@ Movie Count {{movieCount}}
 
       </div>
 
-      <button type="submit" [disabled]="!editForm.valid" class="btn btn-primary">Update</button>
+      <button type="submit" [disabled]="!movieForm.valid" class="btn btn-primary">Update</button>
     </form>
   </div>
   <div class="modal-footer">

@@ -19,13 +19,13 @@ export class MovieTablePageComponent implements OnInit {
 
   movieSubscriber$;
 
-  @ViewChild('mymodal',{'static':true}) editModalDlg:any;
+  @ViewChild('mymodal',{'static':true}) movieModalDlg:any;
 
   closeResult: string;
   modalOptions:NgbModalOptions;
 
   editModalDialog:any;
-  editForm:FormGroup ;
+  movieForm:FormGroup ;
 
   constructor(private formBuilder: FormBuilder,
               private modalService: NgbModal,
@@ -44,7 +44,7 @@ export class MovieTablePageComponent implements OnInit {
       this.movieCount = data.length;
     });
 
-    this.editForm = this.formBuilder.group({
+    this.movieForm = this.formBuilder.group({
       id : [],
       name: ['', Validators.required],
       year: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
@@ -73,22 +73,36 @@ export class MovieTablePageComponent implements OnInit {
 
   get f()
   {
-    return this.editForm.controls;
+    return this.movieForm.controls;
+  }
+  newMovie()
+  {
+    this.open(this.movieModalDlg);
   }
   editMovie(movie)
   {
-    console.log('Edit movie ',movie, ' modal ',this.editModalDlg);
+    console.log('Edit movie ',movie, ' modal ',this.movieModalDlg);
     let data = {... movie};
-    this.editForm.patchValue(data);
-    this.open(this.editModalDlg);
+    this.movieForm.patchValue(data);
+    this.open(this.movieModalDlg);
   }
   onSubmit()
   {
-    var model = this.editForm.value;
-    this.movieService.update(model);
-    this.editForm.reset();
+    var model = this.movieForm.value;
+
+    console.log('On Submit ',model.id);
+
+    if( model.id ) { //Thre is id, so update
+      this.movieService.update(model);
+    }
+    else
+    {
+      this.movieService.create(model);
+    }
+    this.movieForm.reset();
     this.modalService.dismissAll();
     console.log('Submit form ', model);
+
   }
   deleteMovie(movie)
   {
