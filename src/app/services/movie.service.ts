@@ -41,4 +41,14 @@ export class MovieService {
       this.movies$.next(this.movies);
     });
   }
+  update(movie:Movie)
+  {
+    this.httpClient.put(URL_HOST + "/movies/"+movie.id,movie).subscribe(data=> {
+      console.log('Movie Update ',data)
+
+      //this.movies = this.movies.filter(mov=>mov.id != movie.id);
+      //this.movies$.next(this.movies);
+
+    });
+  }
 }

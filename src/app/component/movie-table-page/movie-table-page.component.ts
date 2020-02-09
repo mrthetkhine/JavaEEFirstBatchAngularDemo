@@ -24,6 +24,7 @@ export class MovieTablePageComponent implements OnInit {
   closeResult: string;
   modalOptions:NgbModalOptions;
 
+  editModalDialog:any;
   editForm:FormGroup ;
 
   constructor(private formBuilder: FormBuilder,
@@ -44,12 +45,13 @@ export class MovieTablePageComponent implements OnInit {
     });
 
     this.editForm = this.formBuilder.group({
+      id : [],
       name: ['', Validators.required],
       year: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
     });
   }
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.editModalDialog = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       console.log('Modal Close');
     }, (reason) => {
@@ -68,10 +70,7 @@ export class MovieTablePageComponent implements OnInit {
     }
   }
 
-  onSubmit()
-  {
-    console.log('Submit form');
-  }
+
   get f()
   {
     return this.editForm.controls;
@@ -79,7 +78,20 @@ export class MovieTablePageComponent implements OnInit {
   editMovie(movie)
   {
     console.log('Edit movie ',movie, ' modal ',this.editModalDlg);
+    this.editForm.patchValue({
+      id : movie.id,
+      name : movie.name,
+      year : movie.year,
+    });
     this.open(this.editModalDlg);
+  }
+  onSubmit()
+  {
+    var model = this.editForm.value;
+    this.movieService.update(model);
+    this.editForm.reset();
+    this.modalService.dismissAll();
+    console.log('Submit form ', model);
   }
   deleteMovie(movie)
   {

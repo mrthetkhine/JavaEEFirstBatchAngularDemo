@@ -9,6 +9,7 @@ Movie Count {{movieCount}}
   <div class="modal-body">
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
       <div class="row from-row">
+        <input class="col-sm-4 form-control" type="hidden" formControlName="id">
         <label class="col-sm-4 ">
           Name
 
