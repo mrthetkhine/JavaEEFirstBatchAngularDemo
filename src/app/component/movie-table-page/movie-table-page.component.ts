@@ -16,7 +16,7 @@ export class MovieTablePageComponent implements OnInit {
 
   movieSubscriber$;
 
-  @ViewChild('mymodal') editModalDlg:any;
+  @ViewChild('mymodal',{static:true}) editModalDlg:any;
 
   closeResult: string;
   modalOptions:NgbModalOptions;
