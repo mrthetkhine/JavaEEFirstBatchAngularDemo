@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,13 +10,18 @@ import { AppComponent } from './app.component';
 import { MovieComponent } from './component/movie/movie.component';
 import { MovieListPageComponent } from './component/movie-list-page/movie-list-page.component';
 import { MovieTablePageComponent } from './component/movie-table-page/movie-table-page.component';
+import { LoginPipe } from './pages/login.pipe';
+import { LoginComponent } from './pages/login/login.component';
+import {TokenInterceptorService} from "./services/token-interceptor.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieComponent,
     MovieListPageComponent,
-    MovieTablePageComponent
+    MovieTablePageComponent,
+    LoginPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,11 @@ import { MovieTablePageComponent } from './component/movie-table-page/movie-tabl
     NgbModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
