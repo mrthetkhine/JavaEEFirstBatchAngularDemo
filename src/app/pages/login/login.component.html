@@ -9,7 +9,7 @@
     <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)"
          class="alert alert-danger">
       <div *ngIf="f.username.errors">
-        EmployeeName is required.
+        Name is required.
       </div>
     </div>
 
@@ -20,11 +20,11 @@
       Password
 
     </label>
-    <input class="col-sm-4 form-control"type="text" formControlName="password">
+    <input class="col-sm-4 form-control"type="password" formControlName="password">
     <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)"
          class="alert alert-danger">
       <div *ngIf="f.password.errors">
-        Year is required.
+        Passwor is required.
       </div>
     </div>
 
